@@ -19,6 +19,11 @@ class MoneyTest {
         assertEquals(15, product2.amount);
     }
     
+    @Test
+    public void testEquality() {
+        assertEquals(new Dollar(5), new Dollar(5));
+        assertNotEquals(new Dollar(5), new Dollar(6));
+    }
 }
 
 class Dollar {
@@ -26,7 +31,13 @@ class Dollar {
     public Dollar(int amount) {
         this.amount = amount;
     }
+
     public Dollar times(int multiplier) {
         return new Dollar(amount * multiplier);
+    }
+    
+    public boolean equals(Object object) {
+        Dollar dollar = (Dollar) object;
+        return amount == dollar.amount;
     }
 }
